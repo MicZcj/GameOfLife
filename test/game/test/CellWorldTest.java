@@ -9,7 +9,6 @@ import org.junit.Test;
 import game.demo.CellWorld;
 
 public class CellWorldTest {
-
 	@Test
 	public void cellsSizeShouldPlusTwo() throws InterruptedException {
 		int size = 10;

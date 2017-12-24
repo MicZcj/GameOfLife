@@ -51,6 +51,19 @@ public class CellWorld extends JFrame {
 
 	}
 
+	// 输出到界面上
+	private void showCells() {
+		for (int i = 1; i < size - 1; i++) {
+			for (int j = 1; j < size - 1; j++) {
+				if (cells[i][j] == 0) {
+					jps[i][j].setBackground(Color.white);
+				} else {
+					jps[i][j].setBackground(Color.black);
+				}
+			}
+		}
+	}
+
 	// 打印二维数组的值
 	private void printCells() {
 		for (int i = 1; i < size - 1; i++) {
@@ -115,7 +128,7 @@ public class CellWorld extends JFrame {
 
 	public void run() throws InterruptedException {
 		while (true) {
-
+			showCells();
 			liveOrDead();
 			Thread.sleep(500);
 		}
