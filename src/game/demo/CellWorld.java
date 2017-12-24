@@ -51,8 +51,16 @@ public class CellWorld extends JFrame {
 
 	}
 
-	
-
+	// 打印二维数组的值
+	private void printCells() {
+		for (int i = 1; i < size - 1; i++) {
+			for (int j = 1; j < size - 1; j++) {
+				System.out.print(cells[i][j] + " ");
+			}
+			System.out.println("\n");
+		}
+		System.out.println("= = = = = = = = = = = = = = = = = = = = = = = =");
+	}
 
 	// 根据输入的存活细胞数随机重置二维数组 用Random方法；
 	private void initCells() {
@@ -69,7 +77,30 @@ public class CellWorld extends JFrame {
 			else
 				i += 1;
 		}
+		printCells();
+	}
+
+	// 细胞按法则变换一次方法 存入currentCells
+	public void liveOrDead() {
+		for (int i = 1; i < size - 1; i++) {
+			for (int j = 1; j < size - 1; j++) {
+				int countAlive = 0;
+				countAlive += cells[i - 1][j - 1] + cells[i - 1][j] + cells[i - 1][j + 1];
+				countAlive += cells[i][j - 1] + cells[i][j + 1];
+				countAlive += cells[i + 1][j - 1] + cells[i + 1][j] + cells[i + 1][j + 1];
+				if (cells[i][j] == 1 && (countAlive < 2 || countAlive > 3)) {
+					currentCells[i][j] = 0;
+				}
+				if (cells[i][j] == 0 && countAlive == 3)
+					currentCells[i][j] = 1;
+				if (countAlive == 2 || countAlive == 3) {
+					currentCells[i][j] = 1;
+				}
+			}
+		}
 		
+		// 打印到控制台
+		printCells();
 	}
 
 }
