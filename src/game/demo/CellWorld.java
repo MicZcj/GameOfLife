@@ -98,9 +98,26 @@ public class CellWorld extends JFrame {
 				}
 			}
 		}
-		
+		// 更新细胞存活图
+		currentToCells();
 		// 打印到控制台
 		printCells();
 	}
 
+	// 把当前的细胞存活状态图复制给cells
+	public void currentToCells() {
+		for (int i = 1; i < size - 1; i++) {
+			for (int j = 1; j < size - 1; j++) {
+				cells[i][j] = currentCells[i][j];
+			}
+		}
+	}
+
+	public void run() throws InterruptedException {
+		while (true) {
+
+			liveOrDead();
+			Thread.sleep(500);
+		}
+	}
 }
